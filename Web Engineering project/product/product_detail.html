@@ -1,0 +1,273 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>Honey Sugar Bakery – Product Detail</title>
+    <meta
+      name="description"
+      content="View product details and customer reviews for Honey Sugar Bakery."
+    />
+    <link rel="stylesheet" href="../product/product_detail.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../js/darkmode.css" />
+  </head>
+
+  <body>
+    <header class="navbar">
+      <div class="logo-container">
+        <img src="../home/bee.png" alt="Logo" class="logo" />
+        <h1 class="logo-text">
+          <a href="../home/home.html">Honey Sugar Bakery</a>
+        </h1>
+      </div>
+      <nav class="nav-center" id="navCenter">
+        <ul>
+          <li><a href="../home/home.html">Home</a></li>
+          <li><a href="product.html">Product</a></li>
+          <li><a href="../about/about.html">About Us</a></li>
+          <li><a href="../account/account.html">My Account</a></li>
+        </ul>
+      </nav>
+      <div class="nav-right">
+        <button class="menu-toggle" id="menuToggle" title="Open Menu">
+          ☰
+        </button>
+        <div
+          class="cart-icon"
+          id="cartToggle"
+          title="View Cart"
+          style="position: relative"
+        >
+          🛒<span
+            id="cartBadge"
+            class="cart-badge-dot"
+            style="display: none"
+          ></span>
+        </div>
+        <a href="../login.php" class="logout-btn" id="authNavBtn">Logout</a>
+        <button class="dm-toggle-btn" id="dmToggle" title="Switch to Dark Mode" aria-label="Switch to Dark Mode">🌙</button>
+      </div>
+    </header>
+
+    <main class="product-detail-container">
+      <div class="product-gallery">
+        <div class="thumbnails" id="thumbnailContainer"></div>
+        <div class="main-image-wrapper" style="position: relative">
+          <div
+            id="soldOutBanner"
+            style="
+              display: none;
+              position: absolute;
+              inset: 0;
+              background: rgba(0, 0, 0, 0.45);
+              z-index: 10;
+              align-items: center;
+              justify-content: center;
+              border-radius: 20px;
+            "
+          >
+            <span
+              style="
+                background: #c0392b;
+                color: #fff;
+                font-size: 1.3rem;
+                font-weight: 800;
+                padding: 12px 32px;
+                border-radius: 10px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+              "
+              >Sold Out</span
+            >
+          </div>
+          <img id="mainImage" alt="Product Image" />
+        </div>
+      </div>
+
+      <div class="product-info">
+        <h1 class="product-title" id="productTitle">Loading…</h1>
+
+        <div class="product-price-row">
+          <span class="product-price" id="productPrice">--</span>
+        </div>
+
+        <div class="product-stock-row">
+          <span class="product-stock" id="productStockStatus"
+            >Checking stock…</span
+          >
+        </div>
+
+        <div class="product-rating-row">
+          <span class="avg-stars" id="avgStarsDisplay">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
+          <span class="review-count" id="reviewCountDisplay">(0 reviews)</span>
+        </div>
+
+        <div class="quantity-label">QUANTITY</div>
+        <div class="quantity-selector">
+          <button class="qty-btn" onclick="updateQty(-1)">−</button>
+          <input
+            type="text"
+            id="qtyInput"
+            class="qty-input"
+            value="1"
+            readonly
+          />
+          <button class="qty-btn" onclick="updateQty(1)">+</button>
+        </div>
+
+        <button class="add-to-cart-btn" id="addToCartBtn">
+          ADD TO CART 🍯
+        </button>
+
+        <p class="product-description" id="productDesc"></p>
+
+        <div class="product-features">
+          <div class="pf-item">
+            <span class="pf-icon">🌿</span><span>100% Natural</span>
+          </div>
+          <div class="pf-item">
+            <span class="pf-icon">🚚</span><span>Free Delivery 1500+</span>
+          </div>
+          <div class="pf-item">
+            <span class="pf-icon">↩️</span><span>Easy Returns</span>
+          </div>
+        </div>
+
+        <a href="#reviewsSection" class="jump-to-reviews-btn"
+          >&#9733; See Customer Reviews</a
+        >
+      </div>
+    </main>
+
+    <section class="related-products-section">
+      <div class="related-inner">
+        <h2 class="related-title">You Might Also Like</h2>
+        <div class="related-grid" id="relatedGrid"></div>
+      </div>
+    </section>
+
+    <section class="reviews-section" id="reviewsSection">
+      <div class="reviews-inner">
+        <div class="reviews-header">
+          <h2 class="reviews-title">Customer Reviews</h2>
+          <div class="reviews-summary">
+            <span class="big-rating" id="bigRating">0.0</span>
+            <div class="rating-meta">
+              <div class="stars-row" id="summaryStars">&#9734;&#9734;&#9734;&#9734;&#9734;</div>
+              <p id="totalReviewsLabel">0 reviews</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-form-card">
+          <h3 class="form-heading">✍️ Write a Review</h3>
+
+          <div class="form-group">
+            <label for="reviewName">Your Name</label>
+            <input
+              type="text"
+              id="reviewName"
+              placeholder="e.g. Ayesha Khan"
+              maxlength="60"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Your Rating</label>
+            <div
+              class="star-picker"
+              id="starPicker"
+              role="radiogroup"
+              aria-label="Rating"
+            >
+              <span class="star-pick" data-val="1" title="1 star">&#9733;</span>
+              <span class="star-pick" data-val="2" title="2 stars">&#9733;</span>
+              <span class="star-pick" data-val="3" title="3 stars">&#9733;</span>
+              <span class="star-pick" data-val="4" title="4 stars">&#9733;</span>
+              <span class="star-pick" data-val="5" title="5 stars">&#9733;</span>
+            </div>
+            <p class="rating-hint" id="ratingHint">Click a star to rate</p>
+          </div>
+
+          <div class="form-group">
+            <label for="reviewText">Your Review</label>
+            <textarea
+              id="reviewText"
+              rows="4"
+              placeholder="Share your experience with this product…"
+              maxlength="500"
+            ></textarea>
+            <p class="char-count"><span id="charCount">0</span>/500</p>
+          </div>
+
+          <button class="submit-review-btn" id="submitReviewBtn">
+            Submit Review 🍯
+          </button>
+          <p
+            class="review-success-msg"
+            id="reviewSuccessMsg"
+            style="display: none"
+          >
+            ✅ Thank you! Your review has been posted.
+          </p>
+        </div>
+
+        <div class="reviews-list" id="reviewsList"></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h2>Honey Sugar Bakery</h2>
+          <p>
+            You're my honey, sweet yet dangerously addictive, the kind of flavor
+            that lingers on my lips, warms my soul, and leaves me craving you in
+            ways words can barely contain. 🍯🔥
+          </p>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="../home/home.html">Home</a></li>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="../about/about.html">About Us</a></li>
+            <li><a href="../account/account.html">My Account</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact Us</h3>
+          <p>📸 honey_bake.co</p>
+          <p>📧 honey@sugarbakery.com</p>
+          <p>📞 (+92) 332-0241610</p>
+        </div>
+      </div>
+      <hr class="footer-divider" />
+      <div class="footer-bottom">
+        <p>© 2024 Honey Sugar Bakery. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <div class="cart-sidebar" id="cartSidebar">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button class="close-cart" id="closeCart">&times;</button>
+      </div>
+      <div class="cart-content" id="cartContent">
+        <p class="empty-cart-message">🛒 Your cart is currently empty.</p>
+      </div>
+    </div>
+
+    <script src="product_detail.js"></script>
+    <script src="../js/auth-nav.js"></script>
+    <script src="../js/darkmode.js"></script>
+  </body>
+</html>

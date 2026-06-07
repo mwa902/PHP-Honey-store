@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Sign Up – Honey Sugar Bakery</title>
+  <link rel="stylesheet" href="../login.css">
+  <link rel="stylesheet" href="signup.css">
+  <link rel="stylesheet" href="../js/darkmode.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="login-page-body">
+
+  <button class="dm-toggle-btn" id="dmToggle" title="Switch to Dark Mode"
+    aria-label="Switch to Dark Mode"
+    style="position:fixed;top:18px;right:18px;z-index:9999;">🌙</button>
+
+  <div class="auth-left">
+
+    <div class="hex-bg">
+      <div class="hex"></div><div class="hex"></div><div class="hex"></div>
+      <div class="hex"></div><div class="hex"></div><div class="hex"></div>
+      <div class="hex"></div><div class="hex"></div>
+    </div>
+
+    <div class="auth-left-inner">
+
+      <div class="auth-brand">
+        <img src="../home/bee.png" alt="Logo" class="auth-brand-logo"
+             onerror="this.style.display='none'">
+        <div class="auth-brand-name">
+          Honey Sugar
+          <span>Bakery</span>
+        </div>
+      </div>
+
+      <span class="auth-hero-emoji">🐝</span>
+      <h2>Join Our <span>Sweet</span> Family!</h2>
+      <p>Create your free account and start enjoying the finest handcrafted honey products — delivered right to your door.</p>
+
+      <div class="auth-features">
+        <div class="auth-feature-item">
+          <span class="feat-icon">⭐</span>
+          <div class="feat-text">
+            <strong>Member Discounts</strong>
+            <span>Exclusive deals only for registered members</span>
+          </div>
+        </div>
+        <div class="auth-feature-item">
+          <span class="feat-icon">📦</span>
+          <div class="feat-text">
+            <strong>Order Tracking</strong>
+            <span>Track every order from your account dashboard</span>
+          </div>
+        </div>
+        <div class="auth-feature-item">
+          <span class="feat-icon">🍯</span>
+          <div class="feat-text">
+            <strong>Premium Quality</strong>
+            <span>Lab-tested, 100% pure honey — no compromise</span>
+          </div>
+        </div>
+        <div class="auth-feature-item">
+          <span class="feat-icon">🚚</span>
+          <div class="feat-text">
+            <strong>Free Delivery</strong>
+            <span>On all orders above Rs. 1,500</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="auth-tagline">
+        <strong>"Pure from the hive, straight to your heart."</strong>
+      </p>
+
+    </div>
+  </div>
+
+  <div class="auth-right">
+    <div class="auth-form-wrap">
+
+      <h2>Create Account 🐝</h2>
+      <p class="auth-subtitle">Join thousands of honey lovers today — it's free!</p>
+
+      <form action="../php/customer_signup.php" method="post" class="signup-form">
+
+        <div class="input-group">
+          <label for="username">Username</label>
+          <div class="input-wrap">
+            <span class="input-icon">👤</span>
+            <input type="text" id="username" name="username"
+                   placeholder="Choose a username" required>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="email">Email Address</label>
+          <div class="input-wrap">
+            <span class="input-icon">✉️</span>
+            <input type="email" id="email" name="email"
+                   placeholder="you@example.com" required>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="password">Password</label>
+          <div class="input-wrap">
+            <span class="input-icon">🔒</span>
+            <input type="password" id="password" name="password"
+                   placeholder="Min 8 characters" required>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="phone">Phone Number</label>
+          <div class="input-wrap">
+            <span class="input-icon">📞</span>
+            <input type="text" id="phone" name="phone"
+                   placeholder="+92 3XX-XXXXXXX" required>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="city">
+            City
+            <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#c4a060;font-size:0.72rem;"> (optional)</span>
+          </label>
+          <div class="input-wrap">
+            <span class="input-icon">📍</span>
+            <input type="text" id="city" name="city" placeholder="e.g. Lahore">
+          </div>
+        </div>
+
+        <button type="submit" class="auth-submit-btn">
+          Create My Account 🍯
+        </button>
+      </form>
+
+      <div class="auth-divider">or</div>
+
+      <p class="paragraph">
+        Already have an account? <a href="../login.php">Sign in here</a>
+      </p>
+
+    </div>
+  </div>
+
+  <script src="../js/darkmode.js"></script>
+</body>
+</html>

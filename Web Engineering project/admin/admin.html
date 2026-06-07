@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>Admin Dashboard — Honey Sugar Bakery</title>
+    <meta
+      name="description"
+      content="Admin control panel for Honey Sugar Bakery — manage orders, products, and analytics."
+    />
+    <link rel="stylesheet" href="admin.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../js/darkmode.css" />
+  </head>
+  <body>
+    <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">🍯</div>
+        <div class="brand-text">
+          <span class="brand-name">Honey Sugar</span>
+          <span class="brand-sub">Admin Panel</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="nav-item active" data-section="dashboard">
+            <a href="#" onclick="showSection('dashboard', this)">
+              <i class="fa-solid fa-chart-pie"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item" data-section="orders">
+            <a href="#" onclick="showSection('orders', this)">
+              <i class="fa-solid fa-box-open"></i>
+              <span>Orders</span>
+            </a>
+          </li>
+          <li class="nav-item" data-section="products">
+            <a href="#" onclick="showSection('products', this)">
+              <i class="fa-solid fa-jar"></i>
+              <span>Products</span>
+            </a>
+          </li>
+          <li class="nav-item" data-section="customers">
+            <a href="#" onclick="showSection('customers', this)">
+              <i class="fa-solid fa-users"></i>
+              <span>Customers</span>
+            </a>
+          </li>
+          <li class="nav-item" data-section="profile">
+            <a href="#" onclick="showSection('profile', this)">
+              <i class="fa-solid fa-user-shield"></i>
+              <span>Profile Settings</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="admin-profile">
+          <div class="admin-avatar">A</div>
+          <div class="admin-info">
+            <span class="admin-name">Admin</span>
+            <span class="admin-role">Super Admin</span>
+          </div>
+        </div>
+        <a href="login.php" class="logout-link" title="Logout">
+          <i class="fa-solid fa-right-from-bracket"></i>
+        </a>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button
+            class="sidebar-toggle"
+            id="sidebarToggle"
+            title="Toggle Sidebar"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="page-title" id="pageTitle">Dashboard</div>
+        </div>
+        <div class="topbar-right">
+          <div class="search-box">
+            <input type="text" placeholder="Search…" id="globalSearch" />
+          </div>
+          <div class="topbar-icon" title="Notifications">
+            <i class="fa-solid fa-bell"></i>
+            <span class="notif-dot"></span>
+          </div>
+          <button class="dm-toggle-btn" id="dmToggle" title="Switch to Dark Mode" aria-label="Switch to Dark Mode">🌙</button>
+          <a href="../home/home.html" class="view-site-btn" target="_blank">
+            View Site
+          </a>
+        </div>
+      </header>
+      <section class="content-section active" id="sec-dashboard">
+        <div class="section-header">
+          <h2>Welcome back, Admin</h2>
+          <p>Here's what's happening with your store today.</p>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card stat-revenue">
+            <div class="stat-icon"></div>
+            <div class="stat-body">
+              <div class="stat-label">Total Revenue</div>
+              <div class="stat-value">Rs. 128,450</div>
+              <div class="stat-change positive">+18.2% this month</div>
+            </div>
+          </div>
+          <div class="stat-card stat-orders">
+            <div class="stat-icon"></div>
+            <div class="stat-body">
+              <div class="stat-label">Total Orders</div>
+              <div class="stat-value">342</div>
+              <div class="stat-change positive">+9.4% this week</div>
+            </div>
+          </div>
+          <div class="stat-card stat-customers">
+            <div class="stat-icon"></div>
+            <div class="stat-body">
+              <div class="stat-label">Customers</div>
+              <div class="stat-value">1,204</div>
+              <div class="stat-change positive">+5.1% this month</div>
+            </div>
+          </div>
+          <div class="stat-card stat-products">
+            <div class="stat-icon"></div>
+            <div class="stat-body">
+              <div class="stat-label">Products</div>
+              <div class="stat-value">7</div>
+              <div class="stat-change neutral">No change</div>
+            </div>
+          </div>
+        </div>
+        <div class="dashboard-grid">
+          <div class="card top-products-card">
+            <div class="card-header">
+              <h3>Top Products</h3>
+            </div>
+            <ul class="top-products-list">
+              <li>
+                <div class="tp-info">
+                  <span class="tp-rank">1</span>
+                  <span class="tp-name">Saffron Infused Honey</span>
+                </div>
+                <div class="tp-bar-wrap">
+                  <div class="tp-bar" style="width: 85%"></div>
+                </div>
+                <span class="tp-value">Rs. 38,400</span>
+              </li>
+              <li>
+                <div class="tp-info">
+                  <span class="tp-rank">2</span>
+                  <span class="tp-name">Shilajit Honey</span>
+                </div>
+                <div class="tp-bar-wrap">
+                  <div class="tp-bar" style="width: 72%"></div>
+                </div>
+                <span class="tp-value">Rs. 29,000</span>
+              </li>
+              <li>
+                <div class="tp-info">
+                  <span class="tp-rank">3</span>
+                  <span class="tp-name">Cinnamon Infused Honey</span>
+                </div>
+                <div class="tp-bar-wrap">
+                  <div class="tp-bar" style="width: 60%"></div>
+                </div>
+                <span class="tp-value">Rs. 22,500</span>
+              </li>
+              <li>
+                <div class="tp-info">
+                  <span class="tp-rank">4</span>
+                  <span class="tp-name">Mixed Sachets Box</span>
+                </div>
+                <div class="tp-bar-wrap">
+                  <div class="tp-bar" style="width: 48%"></div>
+                </div>
+                <span class="tp-value">Rs. 17,500</span>
+              </li>
+              <li>
+                <div class="tp-info">
+                  <span class="tp-rank">5</span>
+                  <span class="tp-name">Clove Infused Honey</span>
+                </div>
+                <div class="tp-bar-wrap">
+                  <div class="tp-bar" style="width: 35%"></div>
+                </div>
+                <span class="tp-value">Rs. 13,500</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card recent-orders-card">
+          <div class="card-header">
+            <h3>Recent Orders</h3>
+            <button
+              class="text-btn"
+              onclick="
+                showSection(
+                  'orders',
+                  document.querySelector('[data-section=orders] a'),
+                )
+              "
+            >
+              View All
+            </button>
+          </div>
+          <div class="table-wrapper orders-table-mobile">
+            <table class="data-table" id="recentOrdersTable">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Product</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section" id="sec-orders">
+        <div class="section-header">
+          <h2>Orders Management</h2>
+          <p>Track and manage all customer orders.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>All Orders</h3>
+            <div class="filter-bar">
+              <select id="orderStatusFilter" onchange="filterOrders()">
+                <option value="all">All Status</option>
+                <option value="pending">Pending</option>
+                <option value="processing">Processing</option>
+                <option value="delivered">Delivered</option>
+                <option value="cancelled">Cancelled</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-wrapper orders-table-mobile">
+            <table class="data-table" id="allOrdersTable">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Product</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section" id="sec-products">
+        <div class="section-header">
+          <h2>Product Catalogue</h2>
+          <p>Manage your honey product listing.</p>
+        </div>
+        <div class="products-admin-grid">
+          <div class="product-admin-card">
+            <div class="pac-img-wrap">
+              <img
+                src="../product/cinnamon infused honey thumbnail.png"
+                alt="Cinnamon Honey"
+                onerror="this.src = '../product/images.png'"
+              />
+              <span class="pac-category">Jar</span>
+            </div>
+            <div class="pac-body">
+              <h4>Cinnamon Infused Honey</h4>
+              <div class="pac-price">Rs. 500</div>
+              <div class="pac-stock">
+                <i class="fa-solid fa-circle-check"></i> In Stock
+              </div>
+            </div>
+            <div class="pac-actions">
+              <button class="pac-btn edit">
+                <i class="fa-solid fa-pen"></i> Edit
+              </button>
+              <a
+                href="../product/product_detail.html?product=cinnamon"
+                class="pac-btn view"
+                target="_blank"
+                ><i class="fa-solid fa-eye"></i> View</a
+              >
+            </div>
+          </div>
+
+          <div class="product-admin-card">
+            <div class="pac-img-wrap">
+              <img
+                src="../product/clove infused honey thumbnail.png"
+                alt="Clove Honey"
+                onerror="this.src = '../product/images.png'"
+              />
+              <span class="pac-category">Jar</span>
+            </div>
+            <div class="pac-body">
+              <h4>Clove Infused Honey</h4>
+              <div class="pac-price">Rs. 500</div>
+              <div class="pac-stock">
+                <i class="fa-solid fa-circle-check"></i> In Stock
+              </div>
+            </div>
+            <div class="pac-actions">
+              <button class="pac-btn edit">
+                <i class="fa-solid fa-pen"></i> Edit
+              </button>
+              <a
+                href="../product/product_detail.html?product=clove"
+                class="pac-btn view"
+                target="_blank"
+                ><i class="fa-solid fa-eye"></i> View</a
+              >
+            </div>
+          </div>
+
+          <div class="product-admin-card">
+            <div class="pac-img-wrap">
+              <img
+                src="../product/raw honey thumbnail.png"
+                alt="Raw Honey"
+                onerror="this.src = '../product/images.png'"
+              />
+              <span class="pac-category">Jar</span>
+            </div>
+            <div class="pac-body">
+              <h4>Raw Honey</h4>
+              <div class="pac-price">Rs. 500</div>
+              <div class="pac-stock">In Stock</div>
+            </div>
+            <div class="pac-actions">
+              <button class="pac-btn edit">Edit</button>
+              <a
+                href="../product/product_detail.html?product=raw"
+                class="pac-btn view"
+                target="_blank"
+              >
+                View</a
+              >
+            </div>
+          </div>
+
+          <div class="product-admin-card">
+            <div class="pac-img-wrap">
+              <img
+                src="../product/suffron infused honey.png"
+                alt="Saffron Honey"
+                onerror="this.src = '../product/images.png'"
+              />
+              <span class="pac-category">Jar</span>
+            </div>
+            <div class="pac-body">
+              <h4>Saffron Infused Honey</h4>
+              <div class="pac-price">Rs. 800</div>
+              <div class="pac-stock">
+                <i class="fa-solid fa-circle-check"></i> In Stock
+              </div>
+            </div>
+            <div class="pac-actions">
+              <button class="pac-btn edit">
+                <i class="fa-solid fa-pen"></i> Edit
+              </button>
+              <a
+                href="../product/product_detail.html?product=saffron"
+                class="pac-btn view"
+                target="_blank"
+                ><i class="fa-solid fa-eye"></i> View</a
+              >
+            </div>
+          </div>
+
+          <div class="product-admin-card">
+            <div class="pac-img-wrap">
+              <img
+                src="../product/shilajit thumbnail.png"
+                alt="Shilajit"
+                onerror="this.src = '../product/images.png'"
+              />
+              <span class="pac-category">Sachet</span>
+            </div>
+            <div class="pac-body">
+              <h4>Shilajit Honey</h4>
+              <div class="pac-price">Rs. 1,000</div>
+              <div class="pac-stock">
+                <i class="fa-solid fa-circle-check"></i> In Stock
+              </div>
+            </div>
+            <div class="pac-actions">
+              <button class="pac-btn edit">
+                <i class="fa-solid fa-pen"></i> Edit
+              </button>
+              <a
+                href="../product/product_detail.html?product=shilajit"
+                class="pac-btn view"
+                target="_blank"
+                ><i class="fa-solid fa-eye"></i> View</a
+              >
+            </div>
+          </div>
+
+          <div class="product-admin-card">
+            <div class="pac-img-wrap">
+              <img
+                src="../product/honey sachet thumbnail.png"
+                alt="Honey Sachets"
+                onerror="this.src = '../product/images.png'"
+              />
+              <span class="pac-category">Sachet</span>
+            </div>
+            <div class="pac-body">
+              <h4>Classic Honey Sachets</h4>
+              <div class="pac-price">Rs. 250</div>
+              <div class="pac-stock">
+                <i class="fa-solid fa-circle-check"></i> In Stock
+              </div>
+            </div>
+            <div class="pac-actions">
+              <button class="pac-btn edit">
+                <i class="fa-solid fa-pen"></i> Edit
+              </button>
+              <a
+                href="../product/product_detail.html?product=sachet"
+                class="pac-btn view"
+                target="_blank"
+                ><i class="fa-solid fa-eye"></i> View</a
+              >
+            </div>
+          </div>
+
+          <div class="product-admin-card">
+            <div class="pac-img-wrap">
+              <img
+                src="../product/DSC00726.jpg"
+                alt="Mixed Box"
+                onerror="this.src = '../product/images.png'"
+              />
+              <span class="pac-category">Gift</span>
+            </div>
+            <div class="pac-body">
+              <h4>Mixed Sachets Box</h4>
+              <div class="pac-price">Rs. 3,500</div>
+              <div class="pac-stock">
+                <i class="fa-solid fa-circle-check"></i> In Stock
+              </div>
+            </div>
+            <div class="pac-actions">
+              <button class="pac-btn edit">
+                <i class="fa-solid fa-pen"></i> Edit
+              </button>
+              <a
+                href="../product/product_detail.html?product=tastingbox"
+                class="pac-btn view"
+                target="_blank"
+                ><i class="fa-solid fa-eye"></i> View</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section" id="sec-customers">
+        <div class="section-header">
+          <h2>Customer Management</h2>
+          <p>View all registered customers.</p>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>All Customers</h3></div>
+          <div class="table-wrapper orders-table-mobile">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Orders</th>
+                  <th>Joined</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section" id="sec-profile">
+        <div class="section-header">
+          <h2>Profile Settings</h2>
+          <p>Manage your admin account details and security.</p>
+        </div>
+
+        <div class="profile-container">
+          <div class="card profile-card">
+            <div class="card-header">
+              <h3>Personal Information</h3>
+            </div>
+            <div class="card-body">
+              <form id="profileForm" onsubmit="updateProfile(event)">
+                <div class="form-group">
+                  <label for="adminName">Full Name</label>
+                  <input
+                    type="text"
+                    id="adminName"
+                    class="form-control"
+                    value="Admin"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="adminEmail">Email Address</label>
+                  <input
+                    type="email"
+                    id="adminEmail"
+                    class="form-control"
+                    value="admin@honeysugar.com"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="adminPhone">Phone Number</label>
+                  <input
+                    type="text"
+                    id="adminPhone"
+                    class="form-control"
+                    value="+92 300 1234567"
+                  />
+                </div>
+                <button type="submit" class="btn-primary">Save Changes</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="card password-card">
+            <div class="card-header">
+              <h3>Change Password</h3>
+            </div>
+            <div class="card-body">
+              <form id="passwordForm" onsubmit="changePassword(event)">
+                <div class="form-group">
+                  <label for="currentPassword">Current Password</label>
+                  <input
+                    type="password"
+                    id="currentPassword"
+                    class="form-control"
+                    placeholder="Enter current password"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="newPassword">New Password</label>
+                  <input
+                    type="password"
+                    id="newPassword"
+                    class="form-control"
+                    placeholder="Enter new password"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="confirmNewPassword">Confirm New Password</label>
+                  <input
+                    type="password"
+                    id="confirmNewPassword"
+                    class="form-control"
+                    placeholder="Confirm new password"
+                    required
+                  />
+                </div>
+                <button type="submit" class="btn-primary">
+                  Update Password
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div
+      class="modal-overlay"
+      id="orderModal"
+      onclick="if (event.target === this) closeModal();"
+    >
+      <div class="modal">
+        <button class="modal-close" onclick="closeModal()" aria-label="Close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <h3 class="modal-title">Order Details</h3>
+        <div class="modal-body" id="modalBody"></div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="admin.js"></script>
+    <script src="../js/darkmode.js"></script>
+  </body>
+</html>

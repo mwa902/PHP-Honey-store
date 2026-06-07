@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>Honey Sugar Bakery - Home</title>
+    <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="../js/cart-shared.css" />
+    <link rel="stylesheet" href="../js/darkmode.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <header class="navbar">
+      <div class="logo-container">
+        <a
+          href="home.html"
+          style="
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+          "
+        >
+          <img src="bee.png" alt="Logo" class="logo" />
+          <h1>Honey Sugar Bakery</h1>
+        </a>
+      </div>
+      <nav class="nav-center" id="navCenter">
+        <ul>
+          <li><a href="../home/home.html">Home</a></li>
+          <li><a href="../product/product.html">Products</a></li>
+          <li><a href="../about/about.html">About Us</a></li>
+          <li><a href="../account/account.html">My Account</a></li>
+        </ul>
+      </nav>
+      <div class="nav-right">
+        <div class="nav-search-wrap" id="navSearchWrap">
+          <input
+            type="text"
+            id="navSearchInput"
+            class="nav-search-input"
+            placeholder="Search products…"
+            autocomplete="off"
+          />
+          <button class="nav-search-btn" id="navSearchBtn" title="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <div class="search-dropdown" id="searchDropdown"></div>
+        </div>
+        <button class="menu-toggle" id="menuToggle" title="Open Menu">
+          ☰
+        </button>
+        <div
+          class="cart-icon"
+          id="cartToggle"
+          title="View Cart"
+          style="position: relative"
+        >
+          🛒<span id="cartBadge" style="display: none"></span>
+        </div>
+        <a href="../login.php" class="logout-btn" id="authNavBtn">Logout</a>
+        <button class="dm-toggle-btn" id="dmToggle" title="Switch to Dark Mode" aria-label="Switch to Dark Mode">🌙</button>
+      </div>
+    </header>
+    <main>
+      <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <h1>Welcome to the Sweetest Place</h1>
+          <p>Taste the golden magic of our homemade honey treats.</p>
+          <div class="hero-buttons">
+            <a href="../product/product.html" class="hero-btn primary"
+              >Shop Now</a
+            >
+            <a href="../about/about.html" class="hero-btn secondary"
+              >Learn More</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="promo-banner">
+        <div class="promo-track" id="promoTrack">
+          <div class="promo-item">
+            <span class="promo-badge">🎉 OFFER</span> Free delivery on orders
+            above Rs. 1,500!
+          </div>
+          <div class="promo-item">
+            <span class="promo-badge">🍯 NEW</span> Shilajit Honey — now in
+            stock!
+          </div>
+          <div class="promo-item">
+            <span class="promo-badge">🎁 GIFT</span> Mixed Sachets Box — perfect
+            for gifting!
+          </div>
+          <div class="promo-item">
+            <span class="promo-badge">⭐ BEST</span> Saffron Infused Honey — our
+            #1 seller!
+          </div>
+          <div class="promo-item">
+            <span class="promo-badge">🎉 OFFER</span> Free delivery on orders
+            above Rs. 1,500!
+          </div>
+          <div class="promo-item">
+            <span class="promo-badge">🍯 NEW</span> Shilajit Honey — now in
+            stock!
+          </div>
+          <div class="promo-item">
+            <span class="promo-badge">🎁 GIFT</span> Mixed Sachets Box — perfect
+            for gifting!
+          </div>
+          <div class="promo-item">
+            <span class="promo-badge">⭐ BEST</span> Saffron Infused Honey — our
+            #1 seller!
+          </div>
+        </div>
+      </section>
+
+      <section class="categories-section">
+        <h2 class="section-title">Shop by Category</h2>
+        <p class="section-subtitle">Find exactly what you're looking for</p>
+        <div class="categories-grid">
+          <a href="../product/product.html?filter=jar" class="category-card">
+            <div class="cat-icon">🫙</div>
+            <h3>Honey Jars</h3>
+            <p>Pure & infused varieties</p>
+          </a>
+          <a href="../product/product.html?filter=sachet" class="category-card">
+            <div class="cat-icon">🍬</div>
+            <h3>Sachets</h3>
+            <p>Single-serve convenience</p>
+          </a>
+          <a href="../product/product.html?filter=jar" class="category-card">
+            <div class="cat-icon">🌿</div>
+            <h3>Infused Honey</h3>
+            <p>Cinnamon, Clove, Saffron</p>
+          </a>
+          <a href="../product/product.html?filter=jar" class="category-card">
+            <div class="cat-icon">🎁</div>
+            <h3>Gift Sets</h3>
+            <p>Perfect for every occasion</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="offers-section">
+        <h2 class="section-title">Special Offers</h2>
+        <p class="section-subtitle">Limited time deals — don't miss out!</p>
+        <div class="offers-grid">
+          <div class="offer-card offer-gold">
+            <div class="offer-badge">🔥 HOT DEAL</div>
+            <h3>Tasting Box Bundle</h3>
+            <p>
+              Try all our flavours in one beautiful gift box. Perfect for honey
+              lovers.
+            </p>
+            <div class="offer-price">Rs. 1,800</div>
+            <a
+              href="../product/product_detail.html?product=tastingbox"
+              class="offer-btn"
+              >Shop Now</a
+            >
+          </div>
+          <div class="offer-card offer-amber">
+            <div class="offer-badge">⭐ BESTSELLER</div>
+            <h3>Saffron Infused Honey</h3>
+            <p>
+              Premium saffron blended with pure honey. A luxurious treat for
+              your senses.
+            </p>
+            <div class="offer-price">Rs. 800</div>
+            <a
+              href="../product/product_detail.html?product=saffron"
+              class="offer-btn"
+              >Shop Now</a
+            >
+          </div>
+          <div class="offer-card offer-green">
+            <div class="offer-badge">🚚 FREE DELIVERY</div>
+            <h3>Order Rs. 1,500+</h3>
+            <p>
+              Get free delivery on all orders above Rs. 1,500. Stock up and
+              save!
+            </p>
+            <div class="offer-price">Save on Shipping</div>
+            <a href="../product/product.html" class="offer-btn">Browse All</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="slideshow-section">
+        <h2 class="slideshow-title">Explore our Collection</h2>
+        <p class="slideshow-subtitle">
+          Discover the perfect blend of tradition and taste with our curated
+          selection of baked goods.
+        </p>
+
+        <div class="slideshow-container">
+          <div class="slider">
+            <div class="slide-card">
+              <div class="slide-image-wrapper">
+                <img
+                  src="DSC00647.jpg"
+                  alt="Cinnamon Infused Honey"
+                  class="slide-image"
+                />
+                <div class="slide-top-right">
+                  <span class="price-tag">Rs.500</span>
+                </div>
+              </div>
+              <div class="slide-content">
+                <h3>Cinnamon Infused Honey</h3>
+                <p class="slide-desc">Pure squeezed golden honey.</p>
+                <a
+                  href="../product/product_detail.html?product=cinnamon"
+                  class="discover-btn"
+                  >Discover</a
+                >
+              </div>
+            </div>
+            <div class="slide-card">
+              <div class="slide-image-wrapper">
+                <img src="DSC00665.jpg" alt="Pure Honey" class="slide-image" />
+                <div class="slide-top-right">
+                  <span class="price-tag">Rs.500</span>
+                </div>
+              </div>
+              <div class="slide-content">
+                <h3>Clove Infused Honey</h3>
+                <p class="slide-desc">A classic jar of pure sweetness.</p>
+                <a
+                  href="../product/product_detail.html?product=clove"
+                  class="discover-btn"
+                  >Discover</a
+                >
+              </div>
+            </div>
+            <div class="slide-card">
+              <div class="slide-image-wrapper">
+                <img
+                  src="DSC00687.jpg"
+                  alt="Organic Honey"
+                  class="slide-image"
+                />
+                <div class="slide-top-right">
+                  <span class="price-tag">Rs.500</span>
+                </div>
+              </div>
+              <div class="slide-content">
+                <h3>Suffron Infused Honey</h3>
+                <p class="slide-desc">100% organic and locally sourced.</p>
+                <a
+                  href="../product/product_detail.html?product=saffron"
+                  class="discover-btn"
+                  >Discover</a
+                >
+              </div>
+            </div>
+            <div class="slide-card">
+              <div class="slide-image-wrapper">
+                <img
+                  src="DSC00734.jpg"
+                  alt="Sweet Bee Pollen"
+                  class="slide-image"
+                />
+                <div class="slide-top-right">
+                  <span class="price-tag">Rs.1800</span>
+                </div>
+              </div>
+              <div class="slide-content">
+                <h3>The Honey tasting box</h3>
+                <p class="slide-desc">Rich in vitamins and flavor.</p>
+                <a
+                  href="../product/product_detail.html?product=tastingbox"
+                  class="discover-btn"
+                  >Discover</a
+                >
+              </div>
+            </div>
+            <div class="slide-card">
+              <div class="slide-image-wrapper">
+                <img
+                  src="DSC00764.jpg"
+                  alt="Honey Extract"
+                  class="slide-image"
+                />
+                <div class="slide-top-right">
+                  <span class="price-tag">Rs.250</span>
+                </div>
+              </div>
+              <div class="slide-content">
+                <h3>Shilajit Honey</h3>
+                <p class="slide-desc">Perfect for your daily baking.</p>
+                <a
+                  href="../product/product_detail.html?product=shilajit"
+                  class="discover-btn"
+                  >Discover</a
+                >
+              </div>
+            </div>
+            <div class="slide-card">
+              <div class="slide-image-wrapper">
+                <img src="DSC00766.jpg" alt="Royal Jelly" class="slide-image" />
+                <div class="slide-top-right">
+                  <span class="price-tag">Rs.250</span>
+                </div>
+              </div>
+              <div class="slide-content">
+                <h3>Classic Honey Sachets</h3>
+                <p class="slide-desc">The ultimate premium bee treat.</p>
+                <a
+                  href="../product/product_detail.html?product=sachet"
+                  class="discover-btn"
+                  >Discover</a
+                >
+              </div>
+            </div>
+
+            <div class="slide-card">
+              <div class="slide-image-wrapper">
+                <img
+                  src="DSC00647.jpg"
+                  alt="Cinnamon Infused Honey"
+                  class="slide-image"
+                />
+                <div class="slide-top-right">
+                  <span class="price-tag">Rs.500</span>
+                </div>
+              </div>
+              <div class="slide-content">
+                <h3>Cinnamon Infused Honey</h3>
+                <p class="slide-desc">Pure squeezed golden honey.</p>
+                <a
+                  href="../product/product_detail.html?product=cinnamon"
+                  class="discover-btn"
+                  >Discover</a
+                >
+              </div>
+            </div>
+            <div class="slide-card">
+              <div class="slide-image-wrapper">
+                <img src="DSC00665.jpg" alt="Pure Honey" class="slide-image" />
+                <div class="slide-top-right">
+                  <span class="price-tag">Rs.500</span>
+                </div>
+              </div>
+              <div class="slide-content">
+                <h3>Clove Infused Honey</h3>
+                <p class="slide-desc">A classic jar of pure sweetness.</p>
+                <a
+                  href="../product/product_detail.html?product=clove"
+                  class="discover-btn"
+                  >Discover</a
+                >
+              </div>
+            </div>
+            <div class="slide-card">
+              <div class="slide-image-wrapper">
+                <img
+                  src="DSC00687.jpg"
+                  alt="Organic Honey"
+                  class="slide-image"
+                />
+                <div class="slide-top-right">
+                  <span class="price-tag">Rs.500</span>
+                </div>
+              </div>
+              <div class="slide-content">
+                <h3>Suffron Infused Honey</h3>
+                <p class="slide-desc">100% organic and locally sourced.</p>
+                <a
+                  href="../product/product_detail.html?product=saffron"
+                  class="discover-btn"
+                  >Discover</a
+                >
+              </div>
+            </div>
+            <div class="slide-card">
+              <div class="slide-image-wrapper">
+                <img
+                  src="DSC00734.jpg"
+                  alt="Sweet Bee Pollen"
+                  class="slide-image"
+                />
+                <div class="slide-top-right">
+                  <span class="price-tag">Rs.1800</span>
+                </div>
+              </div>
+              <div class="slide-content">
+                <h3>The Honey tasting box</h3>
+                <p class="slide-desc">Rich in vitamins and flavor.</p>
+                <a
+                  href="../product/product_detail.html?product=tastingbox"
+                  class="discover-btn"
+                  >Discover</a
+                >
+              </div>
+            </div>
+            <div class="slide-card">
+              <div class="slide-image-wrapper">
+                <img
+                  src="DSC00764.jpg"
+                  alt="Honey Extract"
+                  class="slide-image"
+                />
+                <div class="slide-top-right">
+                  <span class="price-tag">Rs.250</span>
+                </div>
+              </div>
+              <div class="slide-content">
+                <h3>Shilajit Honey</h3>
+                <p class="slide-desc">Perfect for your daily baking.</p>
+                <a
+                  href="../product/product_detail.html?product=shilajit"
+                  class="discover-btn"
+                  >Discover</a
+                >
+              </div>
+            </div>
+            <div class="slide-card">
+              <div class="slide-image-wrapper">
+                <img src="DSC00766.jpg" alt="Royal Jelly" class="slide-image" />
+                <div class="slide-top-right">
+                  <span class="price-tag">Rs.250</span>
+                </div>
+              </div>
+              <div class="slide-content">
+                <h3>Classic Honey Sachets</h3>
+                <p class="slide-desc">The ultimate premium bee treat.</p>
+                <a
+                  href="../product/product_detail.html?product=sachet"
+                  class="discover-btn"
+                  >Discover</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; margin-bottom: 40px">
+          <a href="../product/product.html" class="shop-now-btn"
+            >View All Products</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h2>Honey Sugar Bakery</h2>
+          <p>
+            You’re my honey, sweet yet dangerously addictive, the kind of flavor
+            that lingers on my lips, warms my soul, and leaves me craving you in
+            ways words can barely contain. 🍯🔥
+          </p>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="../product/product.html">Products</a></li>
+            <li><a href="../about/about.html">About Us</a></li>
+            <li><a href="../account/account.html">My Account</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact Us</h3>
+          <p>📸 honey_bake.co</p>
+          <p>📧 honey@sugarbakery.com</p>
+          <p>📞 (+92) 332-0241610</p>
+        </div>
+      </div>
+      <hr class="footer-divider" />
+      <div class="footer-bottom">
+        <p>© 2024 Honey Sugar Bakery. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <div class="cart-sidebar" id="cartSidebar">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button class="close-cart" id="closeCart">&times;</button>
+      </div>
+      <div class="cart-content">
+        <p class="empty-cart-message">🛒 Your cart is currently empty.</p>
+      </div>
+    </div>
+
+    <script src="../js/cart-shared.js"></script>
+    <script src="../js/auth-nav.js"></script>
+    <script src="../js/darkmode.js"></script>
+    <script>
+      HoneyCart.initCartUI({
+        checkoutHref: "../Cart%20checkout/cart.html",
+      });
+
+      var products = [
+        {
+          name: "Cinnamon Infused Honey",
+          slug: "cinnamon",
+          price: "Rs. 500",
+          tags: ["cinnamon", "jar", "infused"],
+        },
+        {
+          name: "Clove Infused Honey",
+          slug: "clove",
+          price: "Rs. 500",
+          tags: ["clove", "jar", "infused"],
+        },
+        {
+          name: "Raw Honey",
+          slug: "raw",
+          price: "Rs. 500",
+          tags: ["raw", "jar", "pure"],
+        },
+        {
+          name: "Saffron Infused Honey",
+          slug: "saffron",
+          price: "Rs. 800",
+          tags: ["saffron", "jar", "premium"],
+        },
+        {
+          name: "Shilajit Honey",
+          slug: "shilajit",
+          price: "Rs. 1,000",
+          tags: ["shilajit", "sachet", "energy"],
+        },
+        {
+          name: "Classic Honey Sachets",
+          slug: "sachet",
+          price: "Rs. 250",
+          tags: ["sachet", "classic", "single"],
+        },
+        {
+          name: "Mixed Sachets Box",
+          slug: "tastingbox",
+          price: "Rs. 1,800",
+          tags: ["gift", "box", "mixed", "tasting"],
+        },
+      ];
+
+      var searchInput = document.getElementById("navSearchInput");
+      var searchDropdown = document.getElementById("searchDropdown");
+      var searchBtn = document.getElementById("navSearchBtn");
+
+      function doSearch(q) {
+        q = q.trim().toLowerCase();
+        if (!q) {
+          searchDropdown.style.display = "none";
+          return;
+        }
+        var results = products.filter(function (p) {
+          return (
+            p.name.toLowerCase().includes(q) ||
+            p.tags.some(function (t) {
+              return t.includes(q);
+            })
+          );
+        });
+        if (!results.length) {
+          searchDropdown.innerHTML =
+            '<div class="search-no-result">No products found for "' +
+            q +
+            '"</div>';
+        } else {
+          searchDropdown.innerHTML = results
+            .map(function (p) {
+              return (
+                '<a class="search-result-item" href="../product/product_detail.html?product=' +
+                p.slug +
+                '">' +
+                '<span class="sr-name">🍯 ' +
+                p.name +
+                "</span>" +
+                '<span class="sr-price">' +
+                p.price +
+                "</span>" +
+                "</a>"
+              );
+            })
+            .join("");
+        }
+        searchDropdown.style.display = "block";
+      }
+
+      searchInput.addEventListener("input", function () {
+        doSearch(this.value);
+      });
+      searchBtn.addEventListener("click", function () {
+        var q = searchInput.value.trim();
+        if (q)
+          window.location.href =
+            "../product/product.html?search=" + encodeURIComponent(q);
+      });
+      searchInput.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          var q = searchInput.value.trim();
+          if (q)
+            window.location.href =
+              "../product/product.html?search=" + encodeURIComponent(q);
+        }
+      });
+      document.addEventListener("click", function (e) {
+        if (!e.target.closest("#navSearchWrap"))
+          searchDropdown.style.display = "none";
+      });
+    </script>
+  </body>
+</html>

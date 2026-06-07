@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>My Account – Honey Sugar Bakery</title>
+    <meta
+      name="description"
+      content="Manage your Honey Sugar Bakery account, view order history, and track shipments."
+    />
+    <link rel="stylesheet" href="account.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../js/cart-shared.css" />
+    <link rel="stylesheet" href="../js/darkmode.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo-container">
+        <a
+          href="../home/home.html"
+          style="
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+          "
+        >
+          <img
+            src="../home/bee.png"
+            alt="Logo"
+            class="logo"
+            onerror="this.style.display = 'none'"
+          />
+          <h1>Honey Sugar Bakery</h1>
+        </a>
+      </div>
+      <nav class="nav-center" id="navCenter">
+        <ul>
+          <li><a href="../home/home.html">Home</a></li>
+          <li><a href="../product/product.html">Products</a></li>
+          <li><a href="../about/about.html">About Us</a></li>
+          <li><a href="account.html" class="active-link">My Account</a></li>
+        </ul>
+      </nav>
+      <div class="nav-right">
+        <button class="menu-toggle" id="menuToggle" title="Open Menu">
+          ☰
+        </button>
+        <div
+          class="cart-icon"
+          id="cartToggle"
+          title="View Cart"
+          style="position: relative"
+        >
+          🛒<span id="cartBadge" style="display: none"></span>
+        </div>
+        <a href="../login.php" class="logout-btn" id="authNavBtn">Logout</a>
+        <button class="dm-toggle-btn" id="dmToggle" title="Switch to Dark Mode" aria-label="Switch to Dark Mode">🌙</button>
+      </div>
+    </header>
+
+    <section class="account-hero">
+      <div class="account-hero-inner">
+        <div class="avatar-circle" id="avatarCircle">U</div>
+        <div>
+          <h2 id="welcomeName">Welcome back!</h2>
+          <p id="welcomeEmail" class="hero-email">Loading your account…</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="orders">
+        <i class="fa-solid fa-box-open"></i> Order History
+      </button>
+      <button class="tab-btn" data-tab="profile">
+        <i class="fa-solid fa-user"></i> Profile
+      </button>
+      <button class="tab-btn" data-tab="password">
+        <i class="fa-solid fa-lock"></i> Password
+      </button>
+    </div>
+
+    <main class="account-main">
+      <section class="tab-panel active" id="tab-orders">
+        <div class="panel-header">
+          <h3><i class="fa-solid fa-clock-rotate-left"></i> Your Orders</h3>
+          <div class="order-filters">
+            <select id="orderStatusFilter" onchange="filterOrders()">
+              <option value="all">All Status</option>
+              <option value="pending">Pending</option>
+              <option value="processing">Processing</option>
+              <option value="shipped">Shipped</option>
+              <option value="delivered">Delivered</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="ordersLoading" class="loading-state">
+          <div class="spinner"></div>
+          <p>Loading your orders…</p>
+        </div>
+
+        <div id="ordersEmpty" class="empty-state" style="display: none">
+          <div class="empty-icon">📦</div>
+          <h4>No orders yet</h4>
+          <p>You haven't placed any orders. Start shopping!</p>
+          <a href="../product/product.html" class="btn-primary">Shop Now 🍯</a>
+        </div>
+
+        <div id="ordersList" class="orders-list" style="display: none"></div>
+      </section>
+
+      <section class="tab-panel" id="tab-profile">
+        <div class="panel-header">
+          <h3><i class="fa-solid fa-user-pen"></i> Profile Information</h3>
+        </div>
+        <div class="form-card">
+          <div id="profileMsg" class="form-msg" style="display: none"></div>
+          <form id="profileForm" onsubmit="saveProfile(event)">
+            <div class="form-row two-col">
+              <div class="form-group">
+                <label for="profUsername">Username</label>
+                <input
+                  type="text"
+                  id="profUsername"
+                  placeholder="Your username"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="profEmail">Email Address</label>
+                <input
+                  type="email"
+                  id="profEmail"
+                  placeholder="you@example.com"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-row two-col">
+              <div class="form-group">
+                <label for="profPhone">Phone Number</label>
+                <input
+                  type="tel"
+                  id="profPhone"
+                  placeholder="+92 3XX-XXXXXXX"
+                />
+              </div>
+              <div class="form-group">
+                <label for="profCity">City</label>
+                <input type="text" id="profCity" placeholder="Lahore" />
+              </div>
+            </div>
+            <button type="submit" class="btn-primary">
+              <i class="fa-solid fa-floppy-disk"></i> Save Changes
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="tab-password">
+        <div class="panel-header">
+          <h3><i class="fa-solid fa-shield-halved"></i> Change Password</h3>
+        </div>
+        <div class="form-card">
+          <div id="passwordMsg" class="form-msg" style="display: none"></div>
+          <form id="passwordForm" onsubmit="changePassword(event)">
+            <div class="form-group">
+              <label for="currentPwd">Current Password</label>
+              <div class="pwd-wrap">
+                <input
+                  type="password"
+                  id="currentPwd"
+                  placeholder="Enter current password"
+                  required
+                />
+                <button
+                  type="button"
+                  class="toggle-pwd"
+                  onclick="togglePwd('currentPwd', this)"
+                >
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="newPwd">New Password</label>
+              <div class="pwd-wrap">
+                <input
+                  type="password"
+                  id="newPwd"
+                  placeholder="Min 8 characters"
+                  required
+                  minlength="8"
+                />
+                <button
+                  type="button"
+                  class="toggle-pwd"
+                  onclick="togglePwd('newPwd', this)"
+                >
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="confirmPwd">Confirm New Password</label>
+              <div class="pwd-wrap">
+                <input
+                  type="password"
+                  id="confirmPwd"
+                  placeholder="Repeat new password"
+                  required
+                  minlength="8"
+                />
+                <button
+                  type="button"
+                  class="toggle-pwd"
+                  onclick="togglePwd('confirmPwd', this)"
+                >
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </div>
+            </div>
+            <button type="submit" class="btn-primary">
+              <i class="fa-solid fa-key"></i> Update Password
+            </button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <div
+      class="modal-overlay"
+      id="orderModal"
+      onclick="if (event.target === this) closeModal();"
+    >
+      <div class="modal-box">
+        <button class="modal-close" onclick="closeModal()" aria-label="Close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <h3 class="modal-title">Order Details</h3>
+        <div id="modalBody" class="modal-body"></div>
+      </div>
+    </div>
+
+    <div class="cart-sidebar" id="cartSidebar">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button class="close-cart" id="closeCart">&times;</button>
+      </div>
+      <div class="cart-content"></div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h2>Honey Sugar Bakery</h2>
+          <p>
+            You're my honey, sweet yet dangerously addictive, the kind of flavor
+            that lingers on my lips, warms my soul, and leaves me craving you in
+            ways words can barely contain. 🍯🔥
+          </p>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="../home/home.html">Home</a></li>
+            <li><a href="../product/product.html">Products</a></li>
+            <li><a href="../about/about.html">About Us</a></li>
+            <li><a href="account.html">My Account</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact Us</h3>
+          <p>📸 honey_bake.co</p>
+          <p>📧 honey@sugarbakery.com</p>
+          <p>📞 (+92) 332-0241610</p>
+        </div>
+      </div>
+      <hr class="footer-divider" />
+      <div class="footer-bottom">
+        <p>© 2024 Honey Sugar Bakery. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="../js/cart-shared.js"></script>
+    <script src="account.js"></script>
+    <script src="../js/auth-nav.js"></script>
+    <script src="../js/darkmode.js"></script>
+  </body>
+</html>

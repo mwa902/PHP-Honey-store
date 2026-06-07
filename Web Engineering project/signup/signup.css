@@ -1,0 +1,28 @@
+/* signup.css — extra tweaks for the 5-field signup form */
+
+/* Tighter field spacing so all 5 fields fit without scrolling */
+.signup-form .input-group {
+  margin-bottom: 12px;
+}
+
+/* Slightly reduce right panel padding on signup */
+.auth-right {
+  padding: 44px 52px;
+}
+
+/* Reduce subtitle margin */
+.auth-subtitle {
+  margin-bottom: 22px !important;
+}
+
+@media (max-width: 960px) {
+  .auth-right {
+    padding: 36px 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-right {
+    padding: 28px 18px;
+  }
+}

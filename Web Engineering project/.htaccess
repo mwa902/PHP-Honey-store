@@ -1,0 +1,3 @@
+DirectoryIndex index.php index.html
+
+ErrorDocument 404 /official%20java%20honey/Web%20Engineering%20project/404.html

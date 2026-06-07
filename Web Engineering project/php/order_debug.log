@@ -1,0 +1,36 @@
+[2026-06-02 09:26:22] RAW BODY: {"customer_name":"Test User","cart_items":[{"name":"Cinnamon Infused Honey","slug":"cinnamon","quantity":2,"price":500}],"product":"Cinnamon Infused Honey x2","amount":1180,"address":"123 Test Street, Lahore"}
+[2026-06-02 09:26:22] SESSION: []
+[2026-06-02 09:26:22] customerName=Test User address=123 Test Street, Lahore amount=1180 cartItems=[{"name":"Cinnamon Infused Honey","slug":"cinnamon","quantity":2,"price":500}]
+[2026-06-02 09:26:22] Loaded 7 products from DB
+[2026-06-02 09:26:22] Validating: name='Cinnamon Infused Honey' slug='cinnamon' qty=2 => found id=1 stock=50
+[2026-06-02 09:26:22] DEDUCTED: product_id=1 qty=2 affected_rows=1
+[2026-06-02 09:26:22] TRANSACTION COMMITTED
+[2026-06-02 09:26:22] ORDER INSERTED: ORD-DE2AC5
+[2026-06-02 09:26:22] SUCCESS: order_id=ORD-DE2AC5
+[2026-06-02 09:27:56] RAW BODY: {"customer_name":"abbas","cart_items":[{"name":"Saffron Infused Honey","slug":"saffron","quantity":5,"price":800}],"product":"Saffron Infused Honey x5","amount":4000,"address":"19 A Rehman Pura, Lahore"}
+[2026-06-02 09:27:56] SESSION: {"customer_id":6,"customer_name":"abbas","customer_email":"abbas@gmail.com"}
+[2026-06-02 09:27:56] customerName=abbas address=19 A Rehman Pura, Lahore amount=4000 cartItems=[{"name":"Saffron Infused Honey","slug":"saffron","quantity":5,"price":800}]
+[2026-06-02 09:27:56] Loaded 7 products from DB
+[2026-06-02 09:27:56] Validating: name='Saffron Infused Honey' slug='saffron' qty=5 => found id=4 stock=5
+[2026-06-02 09:27:56] DEDUCTED: product_id=4 qty=5 affected_rows=1
+[2026-06-02 09:27:56] TRANSACTION COMMITTED
+[2026-06-02 09:27:56] ORDER INSERTED: ORD-BF6C4B
+[2026-06-02 09:27:56] SUCCESS: order_id=ORD-BF6C4B
+[2026-06-02 09:36:53] RAW BODY: {"customer_name":"abbas","cart_items":[{"name":"Saffron Infused Honey","slug":"saffron","quantity":13,"price":800}],"product":"Saffron Infused Honey x13","amount":10400,"address":"19 A Rehman Pura, Lahore"}
+[2026-06-02 09:36:53] SESSION: {"customer_id":6,"customer_name":"abbas","customer_email":"abbas@gmail.com"}
+[2026-06-02 09:36:53] customerName=abbas address=19 A Rehman Pura, Lahore amount=10400 cartItems=[{"name":"Saffron Infused Honey","slug":"saffron","quantity":13,"price":800}]
+[2026-06-02 09:36:53] Loaded 7 products from DB
+[2026-06-02 09:36:53] Validating: name='Saffron Infused Honey' slug='saffron' qty=13 => found id=4 stock=13
+[2026-06-02 09:36:53] DEDUCTED: product_id=4 qty=13 affected_rows=1
+[2026-06-02 09:36:53] TRANSACTION COMMITTED
+[2026-06-02 09:36:53] ORDER INSERTED: ORD-C90751
+[2026-06-02 09:36:53] SUCCESS: order_id=ORD-C90751
+[2026-06-02 10:12:36] RAW BODY: {"customer_name":"zaman","cart_items":[{"name":"Mixed Sachets Box","slug":"tastingbox","quantity":1,"price":1800}],"product":"Mixed Sachets Box","amount":1800,"address":"F5, islamabad"}
+[2026-06-02 10:12:36] SESSION: {"_last_active":1780387956}
+[2026-06-02 10:12:36] customerName=zaman address=F5, islamabad amount=1800 cartItems=[{"name":"Mixed Sachets Box","slug":"tastingbox","quantity":1,"price":1800}]
+[2026-06-02 10:12:36] Loaded 7 products from DB
+[2026-06-02 10:12:36] Validating: name='Mixed Sachets Box' slug='tastingbox' qty=1 => found id=7 stock=50
+[2026-06-02 10:12:36] DEDUCTED: product_id=7 qty=1 affected_rows=1
+[2026-06-02 10:12:36] TRANSACTION COMMITTED
+[2026-06-02 10:12:36] ORDER INSERTED: ORD-C8BC9A
+[2026-06-02 10:12:36] SUCCESS: order_id=ORD-C8BC9A

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>Honey Sugar Bakery - About Us</title>
+    <link rel="stylesheet" href="about.css" />
+    <link rel="stylesheet" href="../js/cart-shared.css" />
+    <link rel="stylesheet" href="../js/darkmode.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header class="navbar">
+      <div class="logo-container">
+        <img src="../home/bee.png" alt="Logo" class="logo" />
+        <h1 class="logo-text">
+          <a href="../home/home.html">Honey Sugar Bakery</a>
+        </h1>
+      </div>
+      <div id="navCenter" class="nav-center">
+        <ul>
+          <li><a href="../home/home.html">Home</a></li>
+          <li><a href="../product/product.html">Products</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="../account/account.html">My Account</a></li>
+        </ul>
+      </div>
+      <div class="nav-right">
+        <button class="menu-toggle" id="menuToggle" title="Open Menu">
+          ☰
+        </button>
+        <div class="cart-icon" id="cartToggle" title="View Cart">
+          🛒<span id="cartBadge"></span>
+        </div>
+        <a href="../login.php" class="logout-btn" id="authNavBtn">Logout</a>
+        <button class="dm-toggle-btn" id="dmToggle" title="Switch to Dark Mode" aria-label="Switch to Dark Mode">🌙</button>
+      </div>
+    </header>
+
+    <main class="about-page">
+      <div class="about-hero-banner">
+        <h2>our story</h2>
+        <p>ABOUT US</p>
+      </div>
+
+      <div class="story-container">
+        <div class="story-content">
+          <p>
+            Our journey began with a simple idea — to create products that
+            people can trust, love, and rely on every day. What started as a
+            small vision quickly turned into a passion-driven mission. We
+            believed that quality should never be compromised and that every
+            product should carry value, care, and purpose.
+          </p>
+          <p>
+            In the early days, challenges were everywhere. Limited resources,
+            long nights, and constant learning shaped who we are today. But
+            instead of giving up, we used every obstacle as a stepping stone.
+            With dedication, consistency, and belief in our vision, we slowly
+            built something meaningful.
+          </p>
+          <p>
+            Every product we offer is not just an item — it’s a promise. A
+            promise of quality, trust, and satisfaction. We focus on delivering
+            not only products but also experiences that make our customers feel
+            valued and confident in their choice.
+          </p>
+          <p>
+            Today, we stand proud of how far we’ve come, but this is just the
+            beginning. Our goal is to keep growing, improving, and bringing
+            better solutions to our customers every single day.
+          </p>
+
+          <p class="motivated-line">
+            Success is not built overnight — it’s created through passion,
+            persistence, and the courage to never give up.
+          </p>
+        </div>
+      </div>
+
+      <div class="about-cards-container">
+        <div class="about-card">
+          <div class="card-icon">👁️</div>
+          <h2>Our Vision</h2>
+          <p>
+            To become a leading provider of high-quality products that customers
+            can trust and rely on every day. We aim to create value,
+            satisfaction, and positive experiences through our products and
+            services.
+          </p>
+        </div>
+        <div class="about-card">
+          <div class="card-icon">🎯</div>
+          <h2>Our Mission</h2>
+          <p>
+            To provide high-quality products that customers can trust and rely
+            on every day. We aim to create value, satisfaction, and positive
+            experiences through our products and services.
+          </p>
+        </div>
+        <div class="about-card">
+          <div class="card-icon">🤝</div>
+          <h2>Our Team</h2>
+          <p>
+            A group of passionate individuals dedicated to delivering
+            excellence. Together, we blend creativity, hard work, and care to
+            offer the best products possible.
+          </p>
+        </div>
+      </div>
+
+      <div class="shop-now-wrapper">
+        <a href="../product/product.html" class="shop-now-btn">Shop Now</a>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h2>Honey Sugar Bakery</h2>
+          <p>
+            You’re my honey, sweet yet dangerously addictive, the kind of flavor
+            that lingers on my lips, warms my soul, and leaves me craving you in
+            ways words can barely contain. 🍯🔥
+          </p>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="../home/home.html">Home</a></li>
+            <li><a href="../product/product.html">Products</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="../account/account.html">My Account</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact Us</h3>
+          <p>📸 honey_bake.co</p>
+          <p>📧 honey@sugarbakery.com</p>
+          <p>📞 (+92) 332-0241610</p>
+        </div>
+      </div>
+      <hr class="footer-divider" />
+      <div class="footer-bottom">
+        <p>© 2024 Honey Sugar Bakery. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <div class="cart-sidebar" id="cartSidebar">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button class="close-cart" id="closeCart">&times;</button>
+      </div>
+      <div class="cart-content">
+        <p class="empty-cart-message">🛒 Your cart is currently empty.</p>
+      </div>
+    </div>
+
+    <script src="../js/cart-shared.js"></script>
+    <script>
+      HoneyCart.initCartUI({ checkoutHref: "../Cart%20checkout/cart.html" });
+    </script>
+    <script src="../js/auth-nav.js"></script>
+    <script src="../js/darkmode.js"></script>
+  </body>
+</html>

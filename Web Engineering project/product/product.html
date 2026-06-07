@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>Honey Sugar Bakery - Products</title>
+    <link rel="stylesheet" href="product.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../js/darkmode.css" />
+  </head>
+
+  <body>
+    <header class="navbar">
+      <div class="logo-container">
+        <img src="../home/bee.png" alt="Logo" class="logo" />
+        <h1 class="logo-text">
+          <a href="../home/home.html">Honey Sugar Bakery</a>
+        </h1>
+      </div>
+      <nav class="nav-center" id="navCenter">
+        <ul>
+          <li><a href="../home/home.html">Home</a></li>
+          <li><a href="product.html">Products</a></li>
+          <li><a href="../about/about.html">About Us</a></li>
+          <li><a href="../account/account.html">My Account</a></li>
+        </ul>
+      </nav>
+      <div class="nav-right">
+        <button class="menu-toggle" id="menuToggle" title="Open Menu">
+          ☰
+        </button>
+        <div class="cart-icon" id="cartToggle" title="View Cart">
+          🛒<span id="cartBadge" style="display: none"></span>
+        </div>
+        <a href="../login.php" class="logout-btn" id="authNavBtn">Logout</a>
+        <button class="dm-toggle-btn" id="dmToggle" title="Switch to Dark Mode" aria-label="Switch to Dark Mode">🌙</button>
+      </div>
+    </header>
+
+    <main class="products-page">
+      <div class="product-hero-banner">
+        <h2>Honey Sugar Bakery</h2>
+        <p>PRODUCTS</p>
+      </div>
+      <div class="product-nav">
+        <ul id="filterNav">
+          <li>
+            <button class="filter-btn active" data-filter="all">
+              All Products
+            </button>
+          </li>
+          <li><button class="filter-btn" data-filter="jar">Jars</button></li>
+          <li>
+            <button class="filter-btn" data-filter="sachet">Sachets</button>
+          </li>
+        </ul>
+      </div>
+      <!-- SEARCH BAR -->
+      <div class="product-search-bar">
+        <div class="psb-wrap">
+          <input type="text" id="productSearch" placeholder="Search products…" autocomplete="off" />
+          <button id="productSearchBtn">🔍 Search</button>
+        </div>
+        <div id="searchResultLabel" class="search-result-label" style="display:none"></div>
+      </div>
+
+      <div class="products-grid" id="productsGrid">
+        <!-- Populated by JS from API with live stock status -->
+      </div>
+      <!-- PAGINATION -->
+      <div class="pagination-bar" id="paginationBar" style="display:none">
+        <button class="page-btn" id="prevPage" onclick="changePage(-1)">← Prev</button>
+        <span class="page-info" id="pageInfo">Page 1</span>
+        <button class="page-btn" id="nextPage" onclick="changePage(1)">Next →</button>
+      </div>
+
+      <div class="features-section">        <div class="feature-item">
+          <div class="feature-icon">🌿</div>
+          <h2>100% Pure</h2>
+          <p>NO ADDITIVES OR PRESERVATIVES</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">🧪</div>
+          <h2>Lab Tested</h2>
+          <p>CERTIFIED QUALITY STANDARDS</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">🚚</div>
+          <h2>Fast Delivery</h2>
+          <p>GET YOUR HONEY DELIVERED TO YOUR DOOR</p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h2>Honey Sugar Bakery</h2>
+          <p>
+            You’re my honey, sweet yet dangerously addictive, the kind of flavor
+            that lingers on my lips, warms my soul, and leaves me craving you in
+            ways words can barely contain. 🍯🔥
+          </p>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="../home/home.html">Home</a></li>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="../about/about.html">About Us</a></li>
+            <li><a href="../account/account.html">My Account</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact Us</h3>
+          <p>📸 honey_bake.co</p>
+          <p>📧 honey@sugarbakery.com</p>
+          <p>📞 (+92) 332-0241610</p>
+        </div>
+      </div>
+      <hr class="footer-divider" />
+      <div class="footer-bottom">
+        <p>© 2024 Honey Sugar Bakery. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <div class="cart-sidebar" id="cartSidebar">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button class="close-cart" id="closeCart">&times;</button>
+      </div>
+      <div class="cart-content">
+        <p class="empty-cart-message">🛒 Your cart is currently empty.</p>
+      </div>
+    </div>
+    <!-- JavaScript for Product Page -->
+    <script>
+      /* ── Shared cart key ── */
+      var CART_KEY = "honey_cart";
+      var ITEMS_PER_PAGE = 6;
+      var currentPage = 1;
+      var visibleCards = [];
+      var allCards = [];   // populated after API fetch
+      var activeFilter = "all";
+
+      /* ── Local fallback catalog (used if API is unavailable) ── */
+      var LOCAL_CATALOG = [
+        { slug:"cinnamon", name:"Cinnamon Infused Honey", price:500, category:"jar",    image:"cinnamon infused honey thumbnail.png", desc:"Natural sweetener infused with cinnamon sticks. Great for flavor and natural antioxidants.", stock:99 },
+        { slug:"clove",    name:"Clove Infused Honey",    price:500, category:"jar",    image:"clove infused honey thumbnail.png",    desc:"Infused with cloves for a unique spicy-sweet flavor. Rich in natural antioxidants.",         stock:99 },
+        { slug:"raw",      name:"Raw Honey",              price:500, category:"jar",    image:"raw honey thumbnail.png",              desc:"Pure, unfiltered raw honey straight from the hive. Retains all natural benefits.",            stock:99 },
+        { slug:"saffron",  name:"Saffron Infused Honey",  price:800, category:"jar",    image:"suffron infused honey.png",            desc:"Premium honey blended with strands of pure saffron for a luxurious taste.",                  stock:99 },
+        { slug:"shilajit", name:"Shilajit Honey",         price:1000,category:"sachet", image:"shilajit thumbnail.png",               desc:"A powerful energy booster combining pure honey with Himalayan Shilajit.",                    stock:99 },
+        { slug:"sachet",   name:"Classic Honey Sachets",  price:250, category:"sachet", image:"honey sachet thumbnail.png",           desc:"Convenient, single-serve sachets of our pure honey. Perfect for on-the-go sweetness.",       stock:99 },
+        { slug:"tastingbox",name:"Mixed Sachets Box",     price:1800,category:"jar",    image:"DSC00751-removebg-preview.png",        desc:"A beautiful box containing an assortment of our most popular honey sachets.",               stock:99 },
+      ];
+
+      /* ── Cart helpers ── */
+      function getCart() {
+        try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; } catch(e) { return []; }
+      }
+      function saveCart(c) { localStorage.setItem(CART_KEY, JSON.stringify(c)); }
+
+      function updateCartBadge() {
+        var cart = getCart();
+        var total = cart.reduce(function(s,i){ return s+(i.quantity||1); }, 0);
+        var badge = document.getElementById("cartBadge");
+        if (badge) { badge.textContent = total; badge.style.display = total > 0 ? "flex" : "none"; }
+      }
+
+      function renderCartSidebar() {
+        var container = document.querySelector(".cart-content");
+        if (!container) return;
+        var cart = getCart();
+        if (!cart.length) {
+          container.innerHTML = '<p class="empty-cart-message">🛒 Your cart is currently empty.</p>';
+          return;
+        }
+        var subtotal = 0;
+        var html = '<div class="cart-items-list">';
+        cart.forEach(function(item, idx) {
+          // Safe parser: handles number 500, float 500.00, string "Rs. 500"
+          var raw = item.price;
+          var price = (typeof raw === 'number')
+            ? Math.round(raw)
+            : Math.round(parseFloat(String(raw||0).replace(/[^0-9.]/g,'')) || 0);
+          var qty = item.quantity||1;
+          subtotal += price*qty;
+          html += '<div class="cart-item">' +
+            '<span class="cart-item-emoji">'+(item.image||"🍯")+'</span>' +
+            '<div class="cart-item-info"><span class="cart-item-name">'+item.name+'</span>' +
+            '<span class="cart-item-price">Rs. '+(price*qty).toLocaleString()+'</span></div>' +
+            '<div class="cart-qty-controls">' +
+            '<button class="qty-btn" onclick="changeQty('+idx+',-1)">−</button>' +
+            '<span class="qty-display">'+qty+'</span>' +
+            '<button class="qty-btn" onclick="changeQty('+idx+',1)">+</button></div>' +
+            '<button class="remove-item-btn" onclick="removeItem('+idx+')">✕</button></div>';
+        });
+        html += '</div><div class="cart-footer">' +
+          '<div class="cart-subtotal"><span>Subtotal</span><strong>Rs. '+subtotal.toLocaleString()+'</strong></div>' +
+          '<a href="../Cart%20checkout/cart.html" class="checkout-btn">View Cart & Checkout 🍯</a>' +
+          '<button class="clear-cart-btn" onclick="clearCart()">Clear Cart</button></div>';
+        container.innerHTML = html;
+      }
+
+      window.changeQty = function(idx,delta){ var c=getCart(); c[idx].quantity=Math.max(1,(c[idx].quantity||1)+delta); saveCart(c); updateCartBadge(); renderCartSidebar(); };
+      window.removeItem = function(idx){ var c=getCart(); c.splice(idx,1); saveCart(c); updateCartBadge(); renderCartSidebar(); };
+      window.clearCart  = function(){ saveCart([]); updateCartBadge(); renderCartSidebar(); };
+
+      /* ── Build a product card DOM element ── */
+      function buildCard(p) {
+        var soldOut = !p.is_active || Number(p.stock) === 0;
+        var stock   = Number(p.stock) || 0;
+        var lowThreshold = Number(p.low_stock_threshold) || 5;
+        var isLow   = !soldOut && stock > 0 && stock <= lowThreshold;
+        var catKey  = (p.category || "jar").toLowerCase();
+
+        var div = document.createElement("div");
+        div.className = "product-card" + (soldOut ? " sold-out-card" : "");
+        div.setAttribute("data-category", catKey);
+        div.setAttribute("data-name", p.name.toLowerCase());
+        div.setAttribute("data-desc", (p.desc||"").toLowerCase());
+
+        // Stock badge HTML
+        var stockBadge = "";
+        if (soldOut) {
+          stockBadge = '<div class="sold-out-ribbon">Sold Out</div>';
+        } else if (isLow) {
+          stockBadge = '<div class="stock-badge low-stock-badge">⚠️ Only ' + stock + ' left</div>';
+        } else {
+          stockBadge = '<div class="stock-badge in-stock-badge">✅ In Stock: ' + stock + '</div>';
+        }
+
+        div.innerHTML =
+          '<a href="product_detail.html?product='+p.slug+'" style="text-decoration:none;color:inherit;display:block;position:relative">' +
+            stockBadge +
+            '<img src="'+p.image+'" alt="'+p.name+'" onerror="this.src=\'../home/bee.png\'" />' +
+            '<h3>'+p.name+'</h3>' +
+          '</a>' +
+          '<p>'+p.desc+'</p>' +
+          '<div class="price">Rs. '+Number(p.price).toLocaleString()+'</div>' +
+          (soldOut
+            ? '<div class="card-actions"><button class="add-to-cart-btn sold-out-btn" disabled>Out of Stock</button>' +
+              '<a href="product_detail.html?product='+p.slug+'" class="view-product-btn">View Product</a></div>'
+            : '<div class="card-actions"><button class="add-to-cart-btn">Add to Cart</button>' +
+              '<a href="product_detail.html?product='+p.slug+'" class="view-product-btn">View Product</a></div>'
+          );
+
+        // Wire Add to Cart only if in stock
+        if (!soldOut) {
+          var btn = div.querySelector(".add-to-cart-btn");
+          btn.addEventListener("click", function(e) {
+            e.preventDefault();
+            var cart = getCart();
+            var existing = cart.find(function(i){ return i.name===p.name; });
+            if (existing) { existing.quantity=(existing.quantity||1)+1; }
+            else {
+              cart.push({name:p.name, slug:p.slug||"", price: Math.round(Number(p.price)||0), image:"🍯", quantity:1});
+            }
+            saveCart(cart); updateCartBadge(); renderCartSidebar();
+            document.getElementById("cartSidebar").classList.add("open");
+            btn.textContent="✓ Added!"; btn.classList.add("added");
+            setTimeout(function(){ btn.textContent="Add to Cart"; btn.classList.remove("added"); }, 1800);
+          });
+        }
+
+        return div;
+      }
+
+      /* ── Pagination ── */
+      function applyPagination(cards) {
+        visibleCards = cards;
+        currentPage = 1;
+        renderPage();
+      }
+
+      function renderPage() {
+        var start = (currentPage-1)*ITEMS_PER_PAGE;
+        var end   = start + ITEMS_PER_PAGE;
+        visibleCards.forEach(function(card, i) {
+          card.style.display = (i >= start && i < end) ? "flex" : "none";
+        });
+        var bar = document.getElementById("paginationBar");
+        var totalPages = Math.ceil(visibleCards.length / ITEMS_PER_PAGE);
+        if (totalPages > 1) {
+          bar.style.display = "flex";
+          document.getElementById("pageInfo").textContent = "Page " + currentPage + " of " + totalPages;
+          document.getElementById("prevPage").disabled = currentPage === 1;
+          document.getElementById("nextPage").disabled = currentPage === totalPages;
+        } else {
+          bar.style.display = "none";
+        }
+      }
+
+      window.changePage = function(delta) {
+        var totalPages = Math.ceil(visibleCards.length / ITEMS_PER_PAGE);
+        currentPage = Math.max(1, Math.min(totalPages, currentPage + delta));
+        renderPage();
+        document.querySelector(".products-grid").scrollIntoView({ behavior:"smooth", block:"start" });
+      };
+
+      /* ── Filter + Search ── */
+      function applyFilters(searchQ) {
+        var q = (searchQ||"").toLowerCase().trim();
+        var label = document.getElementById("searchResultLabel");
+        var filtered = allCards.filter(function(card) {
+          var matchFilter = activeFilter==="all" || card.getAttribute("data-category")===activeFilter;
+          var matchSearch = !q ||
+            card.getAttribute("data-name").includes(q) ||
+            card.getAttribute("data-desc").includes(q);
+          return matchFilter && matchSearch;
+        });
+        allCards.forEach(function(c){ c.style.display="none"; });
+        if (q && label) {
+          label.style.display = "block";
+          label.textContent = filtered.length
+            ? 'Showing '+filtered.length+' result(s) for "'+searchQ+'"'
+            : 'No products found for "'+searchQ+'"';
+        } else if (label) {
+          label.style.display = "none";
+        }
+        applyPagination(filtered);
+      }
+
+      /* ── Render all products into the grid ── */
+      function renderProducts(products) {
+        var grid = document.getElementById("productsGrid");
+        grid.innerHTML = "";
+        allCards = [];
+        products.forEach(function(p) {
+          var card = buildCard(p);
+          grid.appendChild(card);
+          allCards.push(card);
+        });
+
+        // Filter buttons
+        var filterBtns = document.querySelectorAll(".filter-btn");
+        filterBtns.forEach(function(btn) {
+          btn.addEventListener("click", function() {
+            filterBtns.forEach(function(b){ b.classList.remove("active"); });
+            btn.classList.add("active");
+            activeFilter = btn.getAttribute("data-filter");
+            applyFilters(document.getElementById("productSearch").value);
+          });
+        });
+
+        // Search bar
+        document.getElementById("productSearchBtn").addEventListener("click", function() {
+          applyFilters(document.getElementById("productSearch").value);
+        });
+        document.getElementById("productSearch").addEventListener("keydown", function(e) {
+          if (e.key==="Enter") applyFilters(this.value);
+        });
+        document.getElementById("productSearch").addEventListener("input", function() {
+          if (!this.value.trim()) applyFilters("");
+        });
+
+        // Cart sidebar
+        document.getElementById("cartToggle").addEventListener("click", function() {
+          document.getElementById("cartSidebar").classList.add("open"); renderCartSidebar();
+        });
+        document.getElementById("closeCart").addEventListener("click", function() {
+          document.getElementById("cartSidebar").classList.remove("open");
+        });
+
+        // Mobile menu
+        var menuToggleEl = document.getElementById("menuToggle");
+        var navCenterEl  = document.getElementById("navCenter");
+        if (menuToggleEl && navCenterEl) {
+          menuToggleEl.addEventListener("click", function(){ navCenterEl.classList.toggle("active"); });
+        }
+
+        // Read URL params
+        var params = new URLSearchParams(window.location.search);
+        var searchQ = params.get("search") || "";
+        var filterQ = params.get("filter") || "all";
+        if (filterQ !== "all") {
+          filterBtns.forEach(function(b){
+            if (b.getAttribute("data-filter")===filterQ) { b.classList.add("active"); activeFilter=filterQ; }
+            else { b.classList.remove("active"); }
+          });
+        }
+        if (searchQ) document.getElementById("productSearch").value = searchQ;
+        applyFilters(searchQ);
+        updateCartBadge();
+      }
+
+      /* ── Fetch from API, fall back to local catalog ── */
+      fetch("../php/api/products.php")
+        .then(function(r){ return r.json(); })
+        .then(function(data) {
+          if (!data.ok || !data.products || !data.products.length) throw new Error("empty");
+          var mapped = data.products.map(function(p) {
+            var catName = (p.category_name || "jar").toLowerCase();
+            return {
+              slug:                p.slug,
+              name:                p.name,
+              price:               p.price,
+              desc:                p.description || "",
+              image:               p.image_path  || "../home/bee.png",
+              category:            catName,
+              stock:               Number(p.stock_quantity ?? 0),
+              low_stock_threshold: Number(p.low_stock_threshold ?? 5),
+              is_active:           Number(p.is_active ?? 1) === 1,
+            };
+          });
+          renderProducts(mapped);
+        })
+        .catch(function() {
+          // API unavailable — use local catalog but mark stock as unknown
+          var mapped = LOCAL_CATALOG.map(function(p) {
+            return { slug:p.slug, name:p.name, price:p.price, desc:p.desc,
+                     image:p.image, category:p.category, stock:p.stock,
+                     low_stock_threshold:5, is_active:true };
+          });
+          renderProducts(mapped);
+        });
+    </script>
+    <script src="../js/auth-nav.js"></script>
+    <script src="../js/darkmode.js"></script>
+  </body>
+</html>
