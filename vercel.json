@@ -7,7 +7,7 @@
   "routes": [
     {
       "src": "/(index\\.php)?",
-      "dest": "/Web%20Engineering%20project/index.php"
+      "dest": "/Web%20Engineering%20project/home/home.html"
     },
     {
       "src": "/(.*)",
