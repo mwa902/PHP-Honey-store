@@ -1,16 +1,17 @@
 {
   "functions": {
-    "api/**/*.php": {
-      "runtime": "vercel-php@0.7.2"
-    },
-    "index.php": {
+    "Web Engineering project/**/*.php": {
       "runtime": "vercel-php@0.7.2"
     }
   },
   "routes": [
     {
       "src": "/(index\\.php)?",
-      "dest": "/index.php"
+      "dest": "/Web%20Engineering%20project/index.php"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/Web%20Engineering%20project/$1"
     }
   ]
 }
